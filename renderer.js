@@ -1,0 +1,1 @@
+console.log('[info] hello this is renderer process')
