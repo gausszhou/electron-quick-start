@@ -1,5 +1,5 @@
 const path = require("path");
-const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, globalShortcut } = require("electron");
+const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, globalShortcut, Notification } = require("electron");
 
 const darkMoe = require("./dark-mode/main")(ipcMain, nativeTheme);
 const menu = require("./keyboard-shortcuts/main")(Menu, MenuItem);
@@ -26,13 +26,22 @@ const createWindow = () => {
       event.preventDefault()
     }
   })
-  
+
 };
+
+const NOTIFICATION_TITLE = 'Basic Notification'
+const NOTIFICATION_BODY = 'Notification from the Main process'
+
+function showNotification () {
+  const notify = new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY })
+  notify.show();
+}
 
 app.whenReady().then(() => {
   // 全局快捷键
   const global = require("./keyboard-shortcuts/global")(globalShortcut);
   createWindow();
+  showNotification()
 });
 
 app.on("activate", () => {
