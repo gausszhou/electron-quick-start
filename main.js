@@ -29,8 +29,8 @@ const createWindow = () => {
 
 };
 
-const NOTIFICATION_TITLE = 'Basic Notification'
-const NOTIFICATION_BODY = 'Notification from the Main process'
+const NOTIFICATION_TITLE = '标题'
+const NOTIFICATION_BODY = '来自主要进程的通知'
 
 function showNotification () {
   const notify = new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY })
